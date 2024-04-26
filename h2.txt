@@ -1,0 +1,50 @@
+CREATE TABLE customer(
+ name  varchar(255) ,
+ adresse  varchar(500) ,
+ plz varchar(10),
+ ort  varchar(100),
+ kommentar varchar(500) ,
+ email varchar(50),
+ telefonnummer varchar(20) ,
+ kunden_id int primary key auto_increment,
+ identifier varchar(40) DEFAULT (uuid())
+);
+
+CREATE TABLE contact(
+ intern boolean,
+ name  varchar(255) ,
+ vorname varchar(255) ,
+ pronomen varchar(50),
+ email varchar(50),
+ telefonnummer varchar(20) ,
+ kommentar varchar(500) ,
+ kontakt_id int primary key auto_increment,
+ identifier varchar(40) DEFAULT (uuid())
+);
+
+CREATE TABLE contact_customer(
+   contact_identifier varchar(255),
+   customer_identifier varchar(255),
+   kommentar varchar(500),
+   id int primary key auto_increment
+);
+
+INSERT INTO customer(name, adresse, plz, ort, kommentar, email, telefonnummer)
+VALUES('Veltins', 'Auf der Streue 1', '59889', 'Grevestein', '', 'veltins@mail.de', '02973/959');
+
+INSERT INTO contact(intern, name, vorname, pronomen, email, telefonnummer, kommentar)
+VALUES(false, 'Mustermann', 'Max', 'he/him', 'max.mustermann@mail.de', '015125877598','');
+
+INSERT INTO contact(intern, name, vorname, pronomen, email, telefonnummer, kommentar)
+VALUES(true, 'Musterfrau', 'Matilde', 'she/her', 'matilde.musterfrau@mail.de', '015125877598','');
+
+INSERT INTO contact_customer(contact_identifier, customer_identifier, kommentar)
+VALUES('48d0ab67-b52e-46f4-9787-091b2eceb80f', '70667276-0daa-4cce-93fc-d1688f7a68b7', '');
+
+CREATE TABLE document(
+ name  varchar(255),
+ file blob,
+ owner_identifier varchar(40),
+ dokument_id int primary key auto_increment,
+ identifier varchar(40) DEFAULT (uuid())
+);
